@@ -296,9 +296,9 @@ export default function DashboardPage() {
                 </div>
               ) : myTools && myTools.length > 0 ? (
                 <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {myTools.map((t) => (
+                  {myTools.map((t, i) => (
                     <div key={t.id} className="relative">
-                      <ToolCard tool={t} />
+                      <ToolCard tool={t} index={i} />
                       {t.has_credentials && (
                         <button
                           onClick={() => reveal(t)}

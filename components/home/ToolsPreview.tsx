@@ -53,8 +53,8 @@ export default function ToolsPreview() {
         </div>
       ) : tools.length > 0 ? (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {tools.map((t) => (
-            <ToolCard key={t.id} tool={t} />
+          {tools.map((t, i) => (
+            <ToolCard key={t.id} tool={t} index={i} />
           ))}
         </div>
       ) : (
