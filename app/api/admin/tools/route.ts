@@ -23,12 +23,12 @@ export async function GET(req: Request) {
     }
     const sql = db();
     const rows = await sql`
-      SELECT id, name, slug, category, description, icon_svg, url, active, sort, created_at
+      SELECT id, name, slug, category, description, icon_svg, url, active, sort
       FROM tools
       WHERE (${q} = '' OR name ILIKE '%' || ${q} || '%' OR description ILIKE '%' || ${q} || '%')
         AND (${category} = '' OR category = ${category})
         AND (${active} = '' OR active = (${active} = 'true'))
-      ORDER BY sort DESC, created_at DESC`;
+      ORDER BY sort ASC, name ASC`;
     return Response.json({ tools: rows });
   } catch (err) {
     return jsonError(err);

@@ -71,6 +71,18 @@ export default function AdminBuyersPage() {
     }
   };
 
+  const removeBuyer = async (b: Buyer) => {
+    if (!confirm(`Delete buyer "${b.email}"? Their orders and credentials will be removed too. This cannot be undone.`)) return;
+    setError('');
+    try {
+      await api(`/api/admin/buyers/${b.id}`, { method: 'DELETE' });
+      setFlash(`Buyer ${b.email} deleted.`);
+      await load(q);
+    } catch (err: any) {
+      setError(err.message || 'Delete failed.');
+    }
+  };
+
   return (
     <div>
       <PageHeader
@@ -122,12 +134,18 @@ export default function AdminBuyersPage() {
                     )}
                   </td>
                   <td className="px-4 py-3 text-xs text-slate-400">{fmtDate(b.active_expires_at)}</td>
-                  <td className="px-4 py-3 text-right">
+                  <td className="px-4 py-3 text-right whitespace-nowrap">
                     <button
                       onClick={() => { setResetBuyer(b); setNewPass(''); }}
                       className="rounded-lg bg-white/5 px-3 py-1.5 text-xs font-medium text-slate-200 hover:bg-white/10"
                     >
                       Reset password
+                    </button>
+                    <button
+                      onClick={() => removeBuyer(b)}
+                      className="ml-2 rounded-lg bg-red-500/15 px-3 py-1.5 text-xs font-semibold text-red-300 hover:bg-red-500/25"
+                    >
+                      Delete
                     </button>
                   </td>
                 </tr>

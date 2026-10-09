@@ -15,8 +15,8 @@ export async function GET() {
     await requireAdmin();
     const sql = db();
     const rows = await sql`
-      SELECT id, slug, name, months, price_pkr, features, active, sort, created_at
-      FROM plans ORDER BY sort ASC, created_at DESC`;
+      SELECT id, slug, name, months, price_pkr, features, active, sort
+      FROM plans ORDER BY sort ASC`;
     return Response.json({ plans: rows });
   } catch (err) {
     return jsonError(err);

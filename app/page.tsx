@@ -138,7 +138,7 @@ export default function Home() {
           <div className="pointer-events-none absolute inset-0 hero-grid-bg opacity-60" aria-hidden />
           <div className="relative">
             <h2 className="text-2xl font-extrabold text-white sm:text-3xl">
-              Ready to unlock <span className="text-gradient-orange">100+ AI tools</span>?
+              Ready to unlock <span className="text-gradient-orange inline-block">100+ AI tools</span>?
             </h2>
             <p className="mx-auto mt-3 max-w-md text-sm text-slate-400">
               Create your free account today — pay only when you pick a plan.
